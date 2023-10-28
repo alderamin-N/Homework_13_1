@@ -28,14 +28,14 @@
 
             }
 
-            public static IEnumerable<P> Top<T, P>(this IEnumerable<T> list, int number, Func<T, P> condition)
+            public static IEnumerable<T> Top<T, P>(this IEnumerable<T> list, int number, Func<T, P> condition)
             {
                 if (number < 1 || number > 100)
                 {
                     throw new ArgumentException("Процент был указан меньше 1 или больше 100");
                 }
                 int count = (int)Math.Ceiling(((list.Count() * (double)number) / 100));
-                return list.Select(condition).OrderByDescending(x => x).Take(count);
+                return list.OrderByDescending(condition).Take(count);
 
             }
         }   
